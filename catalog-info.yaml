@@ -1,0 +1,48 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: mcombi-poi-map-app-dev
+  annotations:
+    argocd/app-name: mcombi-poi-map-app-dev
+    backstage.io/kubernetes-id: mcombi-poi-map-app-dev
+    backstage.io/kubernetes-namespace: mcombi
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=mcombi-poi-map-app-dev'
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: Summit23JanusN/mcombi-frontend
+  tags:
+    - typescript
+    - angular
+    - workshop
+  links:
+    - url: https://console-openshift-console.apps.summit23bis.17gd.p1.openshiftapps.com/dev-pipelines/ns/mcombi/
+      title: Pipelines
+      icon: web
+    - url: https://console-openshift-console.apps.summit23bis.17gd.p1.openshiftapps.com/k8s/ns/mcombi/deployments/poi-map-app
+      title: Deployment
+      icon: web
+    - url: https://devspaces.apps.summit23bis.17gd.p1.openshiftapps.com/#https://github.com/Summit23JanusN/mcombi-frontend?che-editor=che-incubator/che-code/latest&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: http://poi-map-app-mcombi.apps.summit23bis.17gd.p1.openshiftapps.com
+      title: Map
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: "user:mcombi"
+  system: workshop-system-mcombi
+  consumesApis:
+    - gateway-api-mcombi
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: workshop-system-mcombi
+  tags:
+    - backstage
+    - janus-idp
+    - openshift
+    - workshop
+    - rh-summit
+spec:
+  owner: "user:mcombi"
